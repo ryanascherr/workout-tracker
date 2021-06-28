@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const path = require("path");
 const Workout = require("../models/workout.js");
 
 router.get("/api/workouts", (req, res) => {
@@ -22,8 +23,9 @@ router.get("/api/workouts", (req, res) => {
 
 //views file (separate visual from data routes)
 router.get("/exercise", (req, res) => {
- res.sendFile("")
+  res.sendFile(path.join(__dirname, "../public/exercise.html"));
 });
+
 //aggregate
 // router.get("/api/workouts/range", (req, res) => {
 //     Workout.find({})
