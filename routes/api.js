@@ -12,7 +12,6 @@ router.get("/api/workouts", (req, res) => {
       }
     }
   ])
-    // .sort({ date: -1 })
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -48,14 +47,14 @@ router.get("/exercise", (req, res) => {
 //     });
 // });
 
-// router.post("/api/workouts", ({ body }, res) => {
-//   Workout.insertMany(body)
-//     .then(dbTransaction => {
-//       res.json(dbTransaction);
-//     })
-//     .catch(err => {
-//       res.status(400).json(err);
-//     });
-// });
+router.post("/api/workouts", ({ body }, res) => {
+  Workout.insertMany(body)
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
 
 module.exports = router;
