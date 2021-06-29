@@ -26,32 +26,20 @@ router.get("/exercise", (req, res) => {
 });
 
 router.get("/stats", (req, res) => {
-  Workout.aggregate([
-    {
-      addFields: {
-        totalDuration: {
-          $sum: "$exercises.duration"
-        },
-        totalWeight: {
-          $sum: "$exercises.weight"
-        },
-      }
-    }
-  ])
   res.sendFile(path.join(__dirname, "../public/stats.html"));
 });
 
 //aggregate
-// router.get("/api/workouts/range", (req, res) => {
-//     Workout.find({})
-//       .sort({ date: -1 })
-//       .then(dbTransaction => {
-//         res.json(dbTransaction);
-//       })
-//       .catch(err => {
-//         res.status(400).json(err);
-//       });
-//   });
+router.get("/api/workouts/range", (req, res) => {
+    Workout.find({})
+      .sort({ date: -1 })
+      .then(dbWorkout => {
+        res.json(dbWorkout);
+      })
+      .catch(err => {
+        res.status(400).json(err);
+      });
+  });
 
 // router.put("/api/workouts/" + id, ({ body }, res) => {
 //   Workout.create(body)
